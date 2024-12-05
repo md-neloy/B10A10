@@ -21,6 +21,8 @@ const ContextProvider = ({ children }) => {
   });
   // user
   const [user, setUser] = useState(null);
+  // loading
+  const [loading, setLoading] = useState(true);
 
   // login user
   const loginUser = (email, pass) => {
@@ -49,6 +51,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe;
@@ -57,12 +60,15 @@ const ContextProvider = ({ children }) => {
 
   // logout
   const logout = () => {
+    setLoading(false);
     return signOut(auth);
   };
 
   const contextInfo = {
     formData,
     user,
+    loading,
+    setLoading,
     setUser,
     setFormData,
     loginUser,

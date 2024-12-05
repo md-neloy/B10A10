@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { Context } from "../../ContexApi/ContextProvider";
 import { Tooltip } from "react-tooltip";
@@ -7,7 +7,8 @@ import "react-tooltip/dist/react-tooltip.css";
 
 const Navbar = () => {
   const { user, logout } = useContext(Context);
-  console.log(user);
+  const currentLocation = useLocation();
+  console.log(currentLocation.pathname);
   const link = (
     <>
       <li>
@@ -15,7 +16,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black "
+              : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                  currentLocation.pathname === "/"
+                    ? "bg-transparent text-white"
+                    : "bg-cyan-500 text-black"
+                }`
           }
           to="/"
         >
@@ -27,55 +32,81 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black "
+              : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                  currentLocation.pathname === "/"
+                    ? "bg-transparent text-white"
+                    : "bg-cyan-500 text-black"
+                }`
           }
-          to="/campaign"
+          to="/Allcampaign"
         >
           All Campaign
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black "
-          }
-          to="/newCampaign"
-        >
-          Add New Campaign
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black "
-          }
-          to="/newCampaign"
-        >
-          My Campaign
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black "
-          }
-          to="/newCampaign"
-        >
-          My Donations
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
+                : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                    currentLocation.pathname === "/"
+                      ? "bg-transparent text-white"
+                      : "bg-cyan-500 text-black"
+                  }`
+            }
+            to="/newCampaign"
+          >
+            Add New Campaign
+          </NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
+                : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                    currentLocation.pathname === "/"
+                      ? "bg-transparent text-white"
+                      : "bg-cyan-500 text-black"
+                  }`
+            }
+            to="/newCampaign"
+          >
+            My Campaign
+          </NavLink>
+        </li>
+      )}
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
+                : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                    currentLocation.pathname === "/"
+                      ? "bg-transparent text-white"
+                      : "bg-cyan-500 text-black"
+                  }`
+            }
+            to="/newCampaign"
+          >
+            My Donations
+          </NavLink>
+        </li>
+      )}
       <li className="">
         <NavLink
           className={({ isActive }) =>
             isActive
               ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF]  "
-              : "bg-blue-900 font-bold text-white hover:bg-[#00FFFF] hover:text-black  "
+              : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                  currentLocation.pathname === "/"
+                    ? "bg-transparent text-white"
+                    : "bg-cyan-500 text-black"
+                }`
           }
           to="/help"
         >
@@ -86,12 +117,23 @@ const Navbar = () => {
   );
 
   return (
-    <div className="mx-4 md:mx-[100px]">
-      <Tooltip id="my-tooltip" />
-      <div className="navbar bg-base-100 flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal ">
+    <div className="">
+      <Tooltip id="my-tooltip" className="z-40" />
+      <div
+        className={`navbar bg-transparent flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] `}
+        style={{
+          position: currentLocation.pathname === "/" ? "absolute" : "static",
+        }}
+      >
         <div className="navbar-start justify-between md:justify-normal ">
           <div className="dropdown z-20">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className={`btn btn-ghost lg:hidden ${
+                currentLocation.pathname === "/" ? "text-white" : "text-black"
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -115,7 +157,12 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-            <Link to="/" className="text-2xl md:text-4xl font-bold">
+            <Link
+              to="/"
+              className={`text-2xl md:text-4xl font-bold ${
+                currentLocation.pathname === "/" ? "text-white" : "text-black"
+              }`}
+            >
               DreamCrowd
             </Link>
           </div>
@@ -127,7 +174,7 @@ const Navbar = () => {
           <div>
             {user && user?.photoURL ? (
               <div
-                className={`w-16 h-16 bg-blue-900 rounded-full overflow-hidden`}
+                className={`w-10 h-10 bg-blue-900 rounded-full overflow-hidden`}
                 data-tooltip-id="my-tooltip"
                 data-tooltip-content={`${user.displayName}`}
               >
@@ -137,17 +184,17 @@ const Navbar = () => {
               <FaUserAlt />
             )}
           </div>
-          <div>
+          <div className="flex gap-3">
             {user && user?.email ? (
-              <Link className="btn" onClick={logout}>
+              <Link className="btn btn-sm" onClick={logout}>
                 LogOut
               </Link>
             ) : (
               <>
-                <Link className="btn" to="/login">
+                <Link className="btn btn-sm" to="/login">
                   Login
                 </Link>
-                <Link className="btn" to="/register">
+                <Link className="btn btn-sm" to="/register">
                   Register
                 </Link>
               </>
