@@ -1,4 +1,6 @@
 import Banner from "../Banner/Banner";
+import HowItWorks from "../HowItWork/HowItWorks";
+import ImpactfullCauses from "../ImpactFullCause/ImapctfullCauses";
 import RunningCampaign from "../RunningCampaign/RunningCampaign";
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
     <div>
       <Banner />
       <RunningCampaign />
+      <HowItWorks />
+      <ImpactfullCauses />
     </div>
   );
 };

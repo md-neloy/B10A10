@@ -20,7 +20,7 @@ const ContextProvider = ({ children }) => {
     password: "",
   });
   // user
-  const [user, setUser] = useState(null);
+  const [user, setuser] = useState(null);
   // loading
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,7 @@ const ContextProvider = ({ children }) => {
 
   // register user
 
-  const register = (email, pass) => {
+  const createUser = (email, pass) => {
     return createUserWithEmailAndPassword(auth, email, pass);
   };
 
@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setuser(currentUser);
       setLoading(false);
     });
     return () => {
@@ -69,11 +69,11 @@ const ContextProvider = ({ children }) => {
     user,
     loading,
     setLoading,
-    setUser,
+    setuser,
     setFormData,
     loginUser,
     googleLogin,
-    register,
+    createUser,
     updateProfiles,
     logout,
   };

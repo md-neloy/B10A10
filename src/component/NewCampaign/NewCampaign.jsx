@@ -45,6 +45,15 @@ const NewCampaign = () => {
         console.log(data);
         if (data.acknowledged) {
           successNofity();
+          setFormData({
+            ...formData,
+            imageURL: "",
+            title: "",
+            campaignType: "",
+            description: "",
+            minDonation: "",
+            deadline: "",
+          });
         }
       });
   };
