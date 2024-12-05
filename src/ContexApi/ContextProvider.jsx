@@ -23,6 +23,8 @@ const ContextProvider = ({ children }) => {
   const [user, setuser] = useState(null);
   // loading
   const [loading, setLoading] = useState(true);
+  // dark theme togol
+  const [togol, setTogol] = useState(true);
 
   // login user
   const loginUser = (email, pass) => {
@@ -68,6 +70,8 @@ const ContextProvider = ({ children }) => {
     formData,
     user,
     loading,
+    togol,
+    setTogol,
     setLoading,
     setuser,
     setFormData,
