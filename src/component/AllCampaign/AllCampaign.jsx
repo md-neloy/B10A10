@@ -12,8 +12,11 @@ const AllCampaign = () => {
   }, []);
   const handleSeeMore = () => {};
   const handleSort = () => {
-    const sortedData = campaigns.sort((a, b) => a.minDonation - b.minDonation);
+    const sortedData = [...campaigns].sort(
+      (a, b) => a.minDonation - b.minDonation
+    );
     setCampaigns(sortedData);
+    console.log(campaigns);
   };
   return (
     <div>
