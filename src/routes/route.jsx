@@ -8,6 +8,9 @@ import Home from "../component/Home/Home";
 import PriverRoute from "../component/privetRoute/PriverRoute";
 import AllCampaign from "../component/AllCampaign/AllCampaign";
 import DetailsPage from "../component/DetailsPage/DetailsPage";
+import MyCampaign from "../component/MyCampaign/MyCampaign";
+import UpdateCampaign from "../component/UpdateCampaign/UpdateCampaign";
+import MyDonation from "../component/MyDonation/MyDonation";
 
 export const route = createBrowserRouter([
   {
@@ -30,6 +33,32 @@ export const route = createBrowserRouter([
       {
         path: "/Allcampaign",
         element: <AllCampaign />,
+      },
+      {
+        path: "/mydonation",
+        element: (
+          <PriverRoute>
+            <MyDonation />
+          </PriverRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/getcampaign/${params.id}`),
+        element: (
+          <PriverRoute>
+            <UpdateCampaign />
+          </PriverRoute>
+        ),
+      },
+      {
+        path: "/mycampaign",
+        element: (
+          <PriverRoute>
+            <MyCampaign />
+          </PriverRoute>
+        ),
       },
       {
         path: "/detailsPage/:id",

@@ -73,7 +73,7 @@ const Navbar = () => {
                       : "bg-cyan-500 text-black"
                   }`
             }
-            to="/newCampaign"
+            to="/mycampaign"
           >
             My Campaign
           </NavLink>
@@ -91,7 +91,7 @@ const Navbar = () => {
                       : "bg-cyan-500 text-black"
                   }`
             }
-            to="/newCampaign"
+            to="/mydonation"
           >
             My Donations
           </NavLink>

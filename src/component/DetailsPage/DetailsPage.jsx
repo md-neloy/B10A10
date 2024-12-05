@@ -13,6 +13,16 @@ const DetailsPage = () => {
     userEmail,
     userName,
   } = campaigns;
+  const DonationDetails = {
+    imageURL,
+    title,
+    campaignType,
+    description,
+    minDonation,
+    deadline,
+    userEmail,
+    userName,
+  };
 
   const successNofity = () => {
     toast.success("Successfully Added Your Donation!", {
@@ -26,7 +36,7 @@ const DetailsPage = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(campaigns),
+      body: JSON.stringify(DonationDetails),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +44,8 @@ const DetailsPage = () => {
         if (data.acknowledged) {
           successNofity();
         }
-      });
+      })
+      .catch((err) => console.log(err));
     console.log("hello");
   };
   return (
