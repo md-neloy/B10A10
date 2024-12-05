@@ -34,7 +34,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser()
+    loginUser(formData.email, formData.password)
       .then((result) => {
         console.log(result.user);
         successNofity;
@@ -43,7 +43,9 @@ const Login = () => {
           password: "",
         });
       })
-      .cathc((error) => console.log(error));
+      .catch((error) => {
+        errorNofity(error.message);
+      });
   };
 
   const handleGoogleLogin = () => {

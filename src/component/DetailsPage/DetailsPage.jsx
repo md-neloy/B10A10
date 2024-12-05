@@ -1,5 +1,6 @@
 import { FaDonate } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 const DetailsPage = () => {
   const campaigns = useLoaderData();
   const {
@@ -12,28 +13,29 @@ const DetailsPage = () => {
     userEmail,
     userName,
   } = campaigns;
+
+  const successNofity = () => {
+    toast.success("Successfully Added Your Donation!", {
+      position: "top-center",
+    });
+  };
   // Handle Donate Button Click
   const handleDonate = () => {
-    // if (campaign && user) {
-    //   const donationData = {
-    //     campaignId: campaign.id,
-    //     campaignTitle: campaign.title,
-    //     userEmail: user.email,
-    //     userName: user.name,
-    //     donationDate: new Date(),
-    //   };
-    //   // Save donation to database (replace URL with your API/database endpoint)
-    //   fetch("/donations", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(donationData),
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => alert("Thank you for your donation!"))
-    //     .catch((err) => console.error(err));
-    // }
+    fetch(`http://localhost:5000/donation`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(campaigns),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          successNofity();
+        }
+      });
+    console.log("hello");
   };
   return (
     <div>
