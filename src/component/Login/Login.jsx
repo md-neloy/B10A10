@@ -4,7 +4,9 @@ import { FaEye } from "react-icons/fa";
 import { PiEyeClosedFill } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import login from "./login.json";
 import { Context } from "../../ContexApi/ContextProvider";
+import Lottie from "lottie-react";
 
 const Login = () => {
   const [togol, setTogol] = useState(false);
@@ -70,6 +72,7 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
+        <Lottie animationData={login} className="w-36 mx-auto" />
         <form onSubmit={handleSubmit} className="mt-4">
           <div className="form-control">
             <label className="label">

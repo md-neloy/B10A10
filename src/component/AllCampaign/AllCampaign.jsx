@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaSignInAlt } from "react-icons/fa";
+import { Context } from "../../ContexApi/ContextProvider";
 
 const AllCampaign = () => {
+  const { user } = useContext(Context);
   const [campaigns, setCampaigns] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       const result = await fetch(`http://localhost:5000/getcampaign`);
@@ -10,7 +15,13 @@ const AllCampaign = () => {
     }
     getData();
   }, []);
-  const handleSeeMore = () => {};
+  const handleSeeMore = (id) => {
+    if (user && user.email) {
+      navigate(`/detailsPage/${id}`);
+    } else {
+      document.getElementById("login_modal").showModal();
+    }
+  };
   const handleSort = () => {
     const sortedData = [...campaigns].sort(
       (a, b) => a.minDonation - b.minDonation
@@ -50,7 +61,7 @@ const AllCampaign = () => {
                   <td className="py-3 px-4 text-center">
                     <button
                       className="btn btn-sm btn-secondary"
-                      onClick={() => handleSeeMore(campaign.id)}
+                      onClick={() => handleSeeMore(campaign._id)}
                     >
                       See More
                     </button>
@@ -66,6 +77,37 @@ const AllCampaign = () => {
           )}
         </div>
       </div>
+      {/* modal */}
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="login_modal" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-xl">
+          <h3 className="font-bold text-2xl flex items-center justify-center gap-2">
+            <FaSignInAlt className="text-3xl" />
+            Login Required!
+          </h3>
+          <p className="py-4 text-center text-lg">
+            You need to be logged in to access this feature. Please log in to
+            continue.
+          </p>
+          <div className="modal-action justify-center">
+            <form method="dialog">
+              {/* Button to close the modal */}
+              <button className="btn btn-outline border-white text-white hover:bg-white hover:text-blue-500">
+                Close
+              </button>
+            </form>
+            {/* Button to navigate to the login page */}
+            <a
+              href="/login"
+              className="btn btn-primary bg-white text-blue-500 border-none shadow-md hover:bg-blue-100"
+            >
+              <FaSignInAlt className="mr-2" />
+              Login Now
+            </a>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

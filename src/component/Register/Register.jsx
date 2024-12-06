@@ -4,6 +4,8 @@ import { FaEye } from "react-icons/fa";
 import { PiEyeClosedFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import Lottie from "lottie-react";
+import register from "./register.json";
 import { Context } from "../../ContexApi/ContextProvider";
 const Register = () => {
   const { createUser, updateProfiles, setuser, googleLogin } =
@@ -96,6 +98,7 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-center text-gray-700">
           Create an Account
         </h2>
+        <Lottie animationData={register} className="w-36 mx-auto" />
         <form onSubmit={handleSubmit} className="mt-4">
           {/* Name Input */}
           <div className="form-control">

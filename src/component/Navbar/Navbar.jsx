@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { Context } from "../../ContexApi/ContextProvider";
-import { Tooltip } from "react-tooltip";
+// import { Tooltip } from "react-tooltip";
+import { Typewriter } from "react-simple-typewriter";
 import "react-tooltip/dist/react-tooltip.css";
 
 const Navbar = () => {
@@ -125,7 +126,6 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <Tooltip id="my-tooltip" className="z-40" />
       <div
         className={`navbar bg-transparent flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] `}
         style={{
@@ -170,7 +170,10 @@ const Navbar = () => {
                 currentLocation.pathname === "/" ? "text-white" : "text-black"
               }`}
             >
-              DreamCrowd
+              <Typewriter
+                words={["DreamCrowd"]}
+                loop={"infinitely"}
+              ></Typewriter>
             </Link>
           </div>
         </div>
@@ -178,35 +181,49 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
         </div>
         <div className="navbar-start sm:navbar-end gap-2 md:gap-4">
-          <div>
-            {user && user?.photoURL ? (
+          {user ? (
+            <div className="relative group">
+              {/* User Profile Photo */}
               <div
-                className={`w-10 h-10 bg-blue-900 rounded-full overflow-hidden`}
-                data-tooltip-id="my-tooltip"
-                data-tooltip-content={`${user.displayName}`}
+                className="w-10 h-10 bg-gray-300 rounded-full overflow-hidden cursor-pointer "
+                data-tooltip-id="user-tooltip"
+                data-tooltip-content={user.displayName || "User"}
               >
-                <img src={user?.photoURL} alt="" />{" "}
+                {user.photoURL ? (
+                  <img src={user.photoURL} alt="Profile" />
+                ) : (
+                  <FaUserAlt className="text-black w-full h-full" />
+                )}
               </div>
-            ) : (
-              <FaUserAlt />
-            )}
-          </div>
-          <div className="flex gap-3">
-            {user && user?.email ? (
-              <Link className="btn btn-sm" onClick={logout}>
-                LogOut
+
+              {/* Tooltip */}
+              <div className="z-50 bg-blue-400 absolute top-[125%] left-1/2 -translate-x-1/2 w-max rounded-md hidden group-hover:block">
+                <div className="absolute w-4 h-4 rotate-45 bg-blue-400 -top-2 left-1/2 -translate-x-1/2"></div>
+                <div className="text-sm p-2 text-center">
+                  <p>{user.displayName || "Anonymous User"}</p>
+                  <button
+                    onClick={logout}
+                    className="btn btn-sm mt-2 bg-red-500 text-white"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // Conditional Links for Non-Logged-In Users
+            <>
+              <Link to="/login" className="btn btn-sm bg-blue-500 text-white">
+                Login
               </Link>
-            ) : (
-              <>
-                <Link className="btn btn-sm" to="/login">
-                  Login
-                </Link>
-                <Link className="btn btn-sm" to="/register">
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
+              <Link
+                to="/register"
+                className="btn btn-sm bg-green-500 text-white"
+              >
+                Register
+              </Link>
+            </>
+          )}
           {currentLocation.pathname === "/" && (
             <div>
               <label className="swap swap-rotate w-fit">

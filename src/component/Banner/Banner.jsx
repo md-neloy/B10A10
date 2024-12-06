@@ -6,6 +6,7 @@ import { useState } from "react";
 import bannerimg1 from "../../assets/banner.jpg";
 import bannerimg2 from "../../assets/banner2.webp";
 import bannerimg3 from "../../assets/banner3.webp";
+import { Typewriter } from "react-simple-typewriter";
 
 const Banner = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -13,7 +14,14 @@ const Banner = () => {
     <section className="relative">
       <div className="absolute top-1/3 left-2/3 -translate-x-2/3 z-30 w-max">
         <h1 className="text-3xl lg:text-8xl text-white font-extrabold">
-          Join the journey for <br /> idea to market
+          Join the journey for
+          <br />
+          <span className="text-yellow-300">
+            <Typewriter
+              words={["idea to market"]}
+              loop={"infinitely"}
+            ></Typewriter>
+          </span>
         </h1>
       </div>
       <div>
