@@ -31,13 +31,16 @@ const DetailsPage = () => {
   };
   // Handle Donate Button Click
   const handleDonate = () => {
-    fetch(`http://localhost:5000/donation`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(DonationDetails),
-    })
+    fetch(
+      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/donation`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(DonationDetails),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

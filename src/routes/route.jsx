@@ -45,7 +45,9 @@ export const route = createBrowserRouter([
       {
         path: "/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/getcampaign/${params.id}`),
+          fetch(
+            `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getcampaign/${params.id}`
+          ),
         element: (
           <PriverRoute>
             <UpdateCampaign />
@@ -63,7 +65,9 @@ export const route = createBrowserRouter([
       {
         path: "/detailsPage/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/getcampaign/${params.id}`),
+          fetch(
+            `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getcampaign/${params.id}`
+          ),
         element: (
           <PriverRoute>
             <DetailsPage />

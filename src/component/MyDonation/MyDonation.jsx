@@ -6,7 +6,9 @@ const MyDonation = () => {
   const { user } = useContext(Context);
   const [donationCampaign, setDonationCampaign] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/donation/campaign/${user.email}`)
+    fetch(
+      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/donation/campaign/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setDonationCampaign(data))
       .catch((err) => console.log(err));

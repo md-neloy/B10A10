@@ -9,7 +9,9 @@ const AllCampaign = () => {
   const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
-      const result = await fetch(`http://localhost:5000/getcampaign`);
+      const result = await fetch(
+        `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getcampaign`
+      );
       const data = await result.json();
       setCampaigns(data);
     }

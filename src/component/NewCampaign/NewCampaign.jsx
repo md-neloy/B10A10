@@ -33,13 +33,16 @@ const NewCampaign = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    fetch(`http://localhost:5000/addcampaign`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/addcampaign`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
