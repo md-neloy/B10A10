@@ -4,7 +4,6 @@ import { FiClock } from "react-icons/fi";
 
 const MyDonationDetails = ({ campaigns }) => {
   const { imageURL, title, description, deadline } = campaigns;
-  console.log(campaigns);
   const formatedDate = format(new Date(), "yyyy-MM-dd");
 
   const calculateDeadLine = (deadline) => {

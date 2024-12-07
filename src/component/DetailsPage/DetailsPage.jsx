@@ -47,29 +47,30 @@ const DetailsPage = () => {
   const dayLeft = (targetDate - currentDate) / (1000 * 60 * 60 * 24);
   // Handle Donate Button Click
   const handleDonate = () => {
-    fetch(`https://b10-a10-server-tau.vercel.app/donation`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(DonationDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged && dayLeft > 0) {
-          successNofity();
-        } else {
-          ErrorNofity();
-        }
+    if (dayLeft > 0) {
+      fetch(`https://b10-a10-server-tau.vercel.app/donation`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(DonationDetails),
       })
-      .catch((err) => console.log(err));
-    console.log("hello");
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            successNofity();
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      ErrorNofity();
+    }
   };
   return (
     <div>
-      <h2>Details Page</h2>
-      <div className="max-w-4xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-4xl text-center font-bold my-4">Details Page</h2>
+      <div className="max-w-4xl mx-auto mb-10 p-6 bg-white shadow-lg rounded-lg">
         <div className="w-full h-[400px] overflow-hidden">
           <img
             src={imageURL}

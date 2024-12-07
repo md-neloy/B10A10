@@ -25,11 +25,13 @@ const AllCampaign = () => {
     }
   };
   const handleSort = () => {
-    const sortedData = [...campaigns].sort(
-      (a, b) => a.minDonation - b.minDonation
-    );
-    setCampaigns(sortedData);
-    console.log(campaigns);
+    fetch(`https://b10-a10-server-tau.vercel.app/sort`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCampaigns(data);
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div>
@@ -53,7 +55,7 @@ const AllCampaign = () => {
               </tr>
             </thead>
             <tbody>
-              {campaigns.map((campaign, index) => (
+              {campaigns?.map((campaign, index) => (
                 <tr key={campaign._id} className="hover:bg-gray-50">
                   <td className="py-3 px-4">{index + 1}</td>
                   <td className="py-3 px-4">{campaign?.title}</td>

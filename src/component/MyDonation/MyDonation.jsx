@@ -19,11 +19,21 @@ const MyDonation = () => {
       <h2 className="text-4xl font-bold text-center py-3">
         My Donation Campaign
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {donationCampaign.map((campaign, idx) => (
-          <MyDonationDetails key={idx} campaigns={campaign} />
-        ))}
-      </div>
+      {donationCampaign.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {donationCampaign.map((campaign, idx) => (
+              <MyDonationDetails key={idx} campaigns={campaign} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="text-3xl font-semibold text-center my-10">
+            You Didn&apos;t donate any campaing yet!
+          </p>
+        </>
+      )}
     </div>
   );
 };
