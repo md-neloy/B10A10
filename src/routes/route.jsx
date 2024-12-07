@@ -46,7 +46,7 @@ export const route = createBrowserRouter([
         path: "/update/:id",
         loader: ({ params }) =>
           fetch(
-            `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getcampaign/${params.id}`
+            `https://b10-a10-server-tau.vercel.app/getcampaign/${params.id}`
           ),
         element: (
           <PriverRoute>
@@ -66,7 +66,7 @@ export const route = createBrowserRouter([
         path: "/detailsPage/:id",
         loader: ({ params }) =>
           fetch(
-            `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getcampaign/${params.id}`
+            `https://b10-a10-server-tau.vercel.app/getcampaign/${params.id}`
           ),
         element: (
           <PriverRoute>

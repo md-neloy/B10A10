@@ -7,12 +7,12 @@ const MyDonation = () => {
   const [donationCampaign, setDonationCampaign] = useState([]);
   useEffect(() => {
     fetch(
-      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/donation/campaign/${user.email}`
+      `https://b10-a10-server-tau.vercel.app/donation/campaign/${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setDonationCampaign(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [user?.email]);
   console.log(donationCampaign);
   return (
     <div className="mx-4 lg:mx-[100px] py-4">

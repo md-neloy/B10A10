@@ -8,9 +8,7 @@ const MyCampaign = () => {
 
   const { user } = useContext(Context);
   useEffect(() => {
-    fetch(
-      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/getdata/${user?.email}`
-    )
+    fetch(`https://b10-a10-server-tau.vercel.app/getdata/${user?.email}`)
       .then((response) => response.json())
       .then((data) => setCampaigns(data))
       .catch((error) => console.error("Error fetching campaigns:", error));
@@ -27,12 +25,9 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/delete/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`https://b10-a10-server-tau.vercel.app/delete/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

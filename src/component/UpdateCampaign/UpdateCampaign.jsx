@@ -44,14 +44,11 @@ const UpdateCampaign = () => {
   // update
   const handleUpdate = (e) => {
     e.preventDefault();
-    fetch(
-      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/update/${_id}`,
-      {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(formData),
-      }
-    )
+    fetch(`https://b10-a10-server-tau.vercel.app/update/${_id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { FaDonate } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -29,23 +30,33 @@ const DetailsPage = () => {
       position: "top-center",
     });
   };
+  const ErrorNofity = () => {
+    toast.error("Sorry The DeadLine is over!", {
+      position: "top-center",
+    });
+  };
+
+  // current date
+  const formatedDate = format(new Date(), "yyyy-MM-dd");
+  const currentDate = new Date(formatedDate);
+  const targetDate = new Date(deadline);
+  const dayLeft = (targetDate - currentDate) / (1000 * 60 * 60 * 24);
   // Handle Donate Button Click
   const handleDonate = () => {
-    fetch(
-      `https://b10-a10-server-20n6uet60-md-mahmudul-hassans-projects.vercel.app/donation`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(DonationDetails),
-      }
-    )
+    fetch(`https://b10-a10-server-tau.vercel.app/donation`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(DonationDetails),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.acknowledged) {
+        if (data.acknowledged && dayLeft > 0) {
           successNofity();
+        } else {
+          ErrorNofity();
         }
       })
       .catch((err) => console.log(err));
