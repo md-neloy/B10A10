@@ -8,7 +8,7 @@ import { Context } from "../../ContexApi/ContextProvider";
 const Home = () => {
   const { togol } = useContext(Context);
   return (
-    <div style={{ background: togol ? "#1F2937" : "white" }}>
+    <div style={{ background: togol ? "#1F2937" : "#EDF5FF" }}>
       <Banner />
       <RunningCampaign />
       <HowItWorks />

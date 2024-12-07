@@ -127,9 +127,11 @@ const Navbar = () => {
   return (
     <div className="">
       <div
-        className={`navbar bg-transparent flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] `}
+        className={`navbar flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] `}
         style={{
           position: currentLocation.pathname === "/" ? "absolute" : "static",
+          background:
+            currentLocation.pathname === "/" ? "transparent" : "#F4EAFB",
         }}
       >
         <div className="navbar-start justify-between md:justify-normal ">

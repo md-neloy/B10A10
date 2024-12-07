@@ -94,27 +94,29 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="form-control relative">
+            <div className="form-control ">
               <label className="label">
                 <span className="label-text text-blue-700 font-medium">
                   Password
                 </span>
               </label>
-              <input
-                type={togol ? "text" : "password"}
-                name="password"
-                placeholder="Enter your password"
-                className="input input-bordered w-full rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-              <span
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500 cursor-pointer"
-                onClick={() => setTogol(!togol)}
-              >
-                {togol ? <FaEye size={20} /> : <PiEyeClosedFill size={20} />}
-              </span>
+              <div className=" relative">
+                <input
+                  type={togol ? "text" : "password"}
+                  name="password"
+                  placeholder="Enter your password"
+                  className="input input-bordered w-full rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <span
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                  onClick={() => setTogol(!togol)}
+                >
+                  {togol ? <FaEye size={20} /> : <PiEyeClosedFill size={20} />}
+                </span>
+              </div>
             </div>
             <div className="text-right">
               <Link
