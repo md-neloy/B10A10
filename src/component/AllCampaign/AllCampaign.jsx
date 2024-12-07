@@ -6,6 +6,7 @@ import { Context } from "../../ContexApi/ContextProvider";
 const AllCampaign = () => {
   const { user } = useContext(Context);
   const [campaigns, setCampaigns] = useState([]);
+  console.log(campaigns);
   const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
@@ -25,13 +26,10 @@ const AllCampaign = () => {
     }
   };
   const handleSort = () => {
-    fetch(`https://b10-a10-server-tau.vercel.app/sort`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setCampaigns(data);
-      })
-      .catch((err) => console.log(err));
+    const sortedData = [...campaigns].sort(
+      (a, b) => a.minDonation - b.minDonation
+    );
+    setCampaigns(sortedData);
   };
   return (
     <div>
@@ -43,42 +41,50 @@ const AllCampaign = () => {
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="table w-full border border-gray-300">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="py-3 px-4 text-left">#</th>
-                <th className="py-3 px-4 text-left">Title</th>
-                <th className="py-3 px-4 text-left">Organizer</th>
-                <th className="py-3 px-4 text-left">Minimum Donation</th>
-                <th className="py-3 px-4 text-left">Dead Line</th>
-                <th className="py-3 px-4 text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {campaigns?.map((campaign, index) => (
-                <tr key={campaign._id} className="hover:bg-gray-50">
-                  <td className="py-3 px-4">{index + 1}</td>
-                  <td className="py-3 px-4">{campaign?.title}</td>
-                  <td className="py-3 px-4">{campaign?.userName}</td>
-                  <td className="py-3 px-4">{campaign?.minDonation}</td>
-                  <td className="py-3 px-4">{campaign?.deadline}</td>
-                  <td className="py-3 px-4 text-center">
-                    <button
-                      className="btn btn-sm btn-secondary"
-                      onClick={() => handleSeeMore(campaign._id)}
-                    >
-                      See More
-                    </button>
-                  </td>
+          {campaigns.length === 0 ? (
+            <div className="w-fit mx-auto">
+              <span className="loading loading-bars loading-md"></span>
+            </div>
+          ) : (
+            <table className="table w-full border border-gray-300">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="py-3 px-4 text-left">#</th>
+                  <th className="py-3 px-4 text-left">Title</th>
+                  <th className="py-3 px-4 text-left">Organizer</th>
+                  <th className="py-3 px-4 text-left">Minimum Donation</th>
+                  <th className="py-3 px-4 text-left">Dead Line</th>
+                  <th className="py-3 px-4 text-center">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {campaigns.length === 0 && (
-            <p className="text-center mt-4 text-gray-500">
-              No campaigns found.
-            </p>
+              </thead>
+              <tbody>
+                {campaigns?.map((campaign, index) => (
+                  <tr key={campaign._id} className="hover:bg-gray-50">
+                    <td className="py-3 px-4">{index + 1}</td>
+                    <td className="py-3 px-4">{campaign?.title}</td>
+                    <td className="py-3 px-4">{campaign?.userName}</td>
+                    <td className="py-3 px-4">{campaign?.minDonation}</td>
+                    <td className="py-3 px-4">{campaign?.deadline}</td>
+                    <td className="py-3 px-4 text-center">
+                      <button
+                        className="btn btn-sm btn-secondary"
+                        onClick={() => handleSeeMore(campaign._id)}
+                      >
+                        See More
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
+          <div className="overflow-x-auto">
+            {campaigns.length === 0 && (
+              <p className="text-center mt-4 text-gray-500">
+                No campaigns found.
+              </p>
+            )}
+          </div>
         </div>
       </div>
       {/* modal */}
