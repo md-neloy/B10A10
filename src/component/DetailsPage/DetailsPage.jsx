@@ -4,6 +4,7 @@ import { FaDonate } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Context } from "../../ContexApi/ContextProvider";
+
 const DetailsPage = () => {
   const { user } = useContext(Context);
   const campaigns = useLoaderData();
@@ -17,7 +18,7 @@ const DetailsPage = () => {
     userName,
     userEmail,
   } = campaigns;
-  console.log(campaigns);
+
   const DonationDetails = {
     imageURL,
     title,
@@ -34,17 +35,19 @@ const DetailsPage = () => {
       position: "top-center",
     });
   };
+
   const ErrorNofity = () => {
-    toast.error("Sorry The DeadLine is over!", {
+    toast.error("Sorry, the deadline is over!", {
       position: "top-center",
     });
   };
 
-  // current date
+  // Current Date
   const formatedDate = format(new Date(), "yyyy-MM-dd");
   const currentDate = new Date(formatedDate);
   const targetDate = new Date(deadline);
   const dayLeft = (targetDate - currentDate) / (1000 * 60 * 60 * 24);
+
   // Handle Donate Button Click
   const handleDonate = () => {
     if (dayLeft > 0) {
@@ -57,7 +60,6 @@ const DetailsPage = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.acknowledged) {
             successNofity();
           }
@@ -67,34 +69,46 @@ const DetailsPage = () => {
       ErrorNofity();
     }
   };
+
   return (
-    <div>
-      <h2 className="text-4xl text-center font-bold my-4">Details Page</h2>
-      <div className="max-w-4xl mx-auto mb-10 p-6 bg-white shadow-lg rounded-lg">
-        <div className="w-full h-[400px] overflow-hidden">
+    <div className="px-4 py-6 sm:px-6 lg:px-8">
+      <h2 className="text-2xl md:text-4xl text-center font-bold my-4">
+        Details Page
+      </h2>
+      <div className="max-w-4xl mx-auto mb-10 p-4 sm:p-6 bg-white shadow-lg rounded-lg">
+        {/* Image Section */}
+        <div className="w-full h-60 sm:h-80 lg:h-[400px] overflow-hidden mb-4">
           <img
             src={imageURL}
             alt={title}
-            className="w-full h-fit  lg:h-full object-fill rounded-md mb-4 "
+            className="w-full h-full object-cover rounded-md"
           />
         </div>
-        <h1 className="text-3xl font-bold text-gray-800 my-2">{title}</h1>
-        <p className="text-sm text-gray-500 mb-4">
-          <strong>Type:</strong> {campaignType}
-        </p>
-        <p className="text-gray-700 text-base mb-6">{description}</p>
-        <p className="text-sm text-gray-500 mb-4">
-          <strong>Minimum Donation:</strong> ${minDonation}
-        </p>
-        <p className="text-sm text-gray-500 mb-4">
-          <strong>Deadline:</strong> {deadline}
-        </p>
-        <p className="text-sm text-gray-500 mb-6">
-          <strong>Organizer:</strong> {userName} ({userEmail})
-        </p>
+
+        {/* Campaign Details */}
+        <div className="space-y-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+            {title}
+          </h1>
+          <p className="text-sm md:text-base text-gray-500">
+            <strong>Type:</strong> {campaignType}
+          </p>
+          <p className="text-sm md:text-base text-gray-700">{description}</p>
+          <p className="text-sm md:text-base text-gray-500">
+            <strong>Minimum Donation:</strong> ${minDonation}
+          </p>
+          <p className="text-sm md:text-base text-gray-500">
+            <strong>Deadline:</strong> {deadline}
+          </p>
+          <p className="text-sm md:text-base text-gray-500">
+            <strong>Organizer:</strong> {userName} ({userEmail})
+          </p>
+        </div>
+
+        {/* Donate Button */}
         <button
           onClick={handleDonate}
-          className="btn btn-primary w-full flex items-center justify-center gap-2"
+          className="btn btn-primary w-full mt-6 flex items-center justify-center gap-2 text-sm sm:text-base"
         >
           <FaDonate /> Donate
         </button>

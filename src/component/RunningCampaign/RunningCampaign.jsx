@@ -32,7 +32,9 @@ const RunningCampaign = () => {
   console.log(campaigns.length);
   return (
     <div className="mx-4 lg:mx-[100px] py-10">
-      <h1>Running Campaign</h1>
+      <h1 className="text-4xl text-center font-bold mb-4 text-yellow-500 ">
+        Running Campaign
+      </h1>
       {campaigns.length === 0 ? (
         <>
           <div className="w-fit mx-auto">
