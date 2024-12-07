@@ -73,7 +73,7 @@ const Footer = () => {
             <p className="text-sm mb-4">
               Subscribe to our newsletter for updates and stories.
             </p>
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row">
               <input
                 type="email"
                 placeholder="Your email"

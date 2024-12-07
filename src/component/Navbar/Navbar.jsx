@@ -19,7 +19,7 @@ const Navbar = () => {
               ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
               : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
                   currentLocation.pathname === "/"
-                    ? "bg-transparent text-white"
+                    ? "bg-transparent text-black lg:text-white"
                     : "bg-cyan-500 text-black"
                 }`
           }
@@ -35,7 +35,7 @@ const Navbar = () => {
               ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
               : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
                   currentLocation.pathname === "/"
-                    ? "bg-transparent text-white"
+                    ? "bg-transparent text-black lg:text-white"
                     : "bg-cyan-500 text-black"
                 }`
           }
@@ -52,7 +52,7 @@ const Navbar = () => {
                 ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
                 : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
                     currentLocation.pathname === "/"
-                      ? "bg-transparent text-white"
+                      ? "bg-transparent text-black lg:text-white"
                       : "bg-cyan-500 text-black"
                   }`
             }
@@ -70,7 +70,7 @@ const Navbar = () => {
                 ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
                 : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
                     currentLocation.pathname === "/"
-                      ? "bg-transparent text-white"
+                      ? "bg-transparent text-black lg:text-white"
                       : "bg-cyan-500 text-black"
                   }`
             }
@@ -88,7 +88,7 @@ const Navbar = () => {
                 ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
                 : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
                     currentLocation.pathname === "/"
-                      ? "bg-transparent text-white"
+                      ? "bg-transparent text-black lg:text-white"
                       : "bg-cyan-500 text-black"
                   }`
             }
@@ -98,22 +98,6 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      <li className="">
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF]  "
-              : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
-                  currentLocation.pathname === "/"
-                    ? "bg-transparent text-white"
-                    : "bg-cyan-500 text-black"
-                }`
-          }
-          to="/help"
-        >
-          How to Help
-        </NavLink>
-      </li>
     </>
   );
 
