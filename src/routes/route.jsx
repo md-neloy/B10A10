@@ -74,6 +74,7 @@ export const route = createBrowserRouter([
           </PriverRoute>
         ),
       },
+
       {
         path: "/newCampaign",
         element: (

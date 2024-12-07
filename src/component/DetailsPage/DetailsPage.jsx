@@ -1,8 +1,11 @@
 import { format } from "date-fns";
+import { useContext } from "react";
 import { FaDonate } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Context } from "../../ContexApi/ContextProvider";
 const DetailsPage = () => {
+  const { user } = useContext(Context);
   const campaigns = useLoaderData();
   const {
     imageURL,
@@ -11,9 +14,10 @@ const DetailsPage = () => {
     description,
     minDonation,
     deadline,
-    userEmail,
     userName,
+    userEmail,
   } = campaigns;
+  console.log(campaigns);
   const DonationDetails = {
     imageURL,
     title,
@@ -21,8 +25,8 @@ const DetailsPage = () => {
     description,
     minDonation,
     deadline,
-    userEmail,
-    userName,
+    userEmail: `${user?.email}`,
+    userName: `${user?.displayName}`,
   };
 
   const successNofity = () => {

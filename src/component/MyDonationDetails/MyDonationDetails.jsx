@@ -1,10 +1,9 @@
 import { format } from "date-fns";
 import PropTypes from "prop-types";
 import { FiClock } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
-const Campign = ({ campaigns }) => {
-  const { _id, imageURL, title, description, deadline } = campaigns;
+const MyDonationDetails = ({ campaigns }) => {
+  const { imageURL, title, description, deadline } = campaigns;
   console.log(campaigns);
   const formatedDate = format(new Date(), "yyyy-MM-dd");
 
@@ -34,22 +33,14 @@ const Campign = ({ campaigns }) => {
               {calculateDeadLine(deadline)} days left
             </div>
           </div>
-          <div className="card-actions justify-end">
-            <Link
-              to={`/detailsPage/${_id}`}
-              className="btn btn-primary w-full text-white"
-            >
-              See More
-            </Link>
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default Campign;
+export default MyDonationDetails;
 
-Campign.propTypes = {
+MyDonationDetails.propTypes = {
   campaigns: PropTypes.object,
 };

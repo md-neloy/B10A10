@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import Campign from "../RunningCampaign/campaign/Campign";
 import { Context } from "../../ContexApi/ContextProvider";
+import MyDonationDetails from "../MyDonationDetails/MyDonationDetails";
 
 const MyDonation = () => {
   const { user } = useContext(Context);
@@ -21,7 +21,7 @@ const MyDonation = () => {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {donationCampaign.map((campaign, idx) => (
-          <Campign key={idx} campaigns={campaign} />
+          <MyDonationDetails key={idx} campaigns={campaign} />
         ))}
       </div>
     </div>
