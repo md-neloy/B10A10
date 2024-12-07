@@ -64,7 +64,7 @@ const MyCampaign = () => {
                   <th className="py-3 px-4 text-left">#</th>
                   <th className="py-3 px-4 text-left">Title</th>
                   <th className="py-3 px-4 text-left">Description</th>
-                  <th className="py-3 px-4 text-left">Goal Amount</th>
+                  <th className="py-3 px-4 text-left">Dead Line</th>
                   <th className="py-3 px-4 text-center">Actions</th>
                 </tr>
               </thead>
@@ -74,7 +74,7 @@ const MyCampaign = () => {
                     <td className="py-3 px-4">{index + 1}</td>
                     <td className="py-3 px-4">{campaign?.title}</td>
                     <td className="py-3 px-4">{campaign?.description}</td>
-                    <td className="py-3 px-4">{campaign?.goalAmount}</td>
+                    <td className="py-3 px-4">{campaign?.deadline}</td>
                     <td className="py-3 px-4 text-center flex justify-center gap-4">
                       <Link
                         to={`/update/${campaign._id}`}
