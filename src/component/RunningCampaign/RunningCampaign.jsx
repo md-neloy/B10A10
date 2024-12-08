@@ -29,7 +29,6 @@ const RunningCampaign = () => {
     setCampaign(dayleftCampaign.slice(0, 6));
   }, [formatedDate, loadCampings]);
 
-  console.log(campaigns.length);
   return (
     <div className="mx-4 lg:mx-[100px] py-10">
       <h1 className="text-4xl text-center font-bold mb-4 text-yellow-500 ">

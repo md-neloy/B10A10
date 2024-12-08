@@ -7,7 +7,7 @@ const MyDonation = () => {
   const [donationCampaign, setDonationCampaign] = useState([]);
   useEffect(() => {
     fetch(
-      `https://b10-a10-server-tau.vercel.app/donation/campaign/${user.email}`
+      `https://b10-a10-server-tau.vercel.app/donation/campaign/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setDonationCampaign(data))

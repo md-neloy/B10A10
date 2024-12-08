@@ -16,6 +16,7 @@ const NewCampaign = () => {
     userName: `${user?.displayName}`,
   });
 
+  console.log(typeof formData.minDonation);
   const successNofity = () => {
     toast.success("Successfully Added!", {
       position: "top-center",
@@ -26,7 +27,8 @@ const NewCampaign = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]:
+        name === "minDonation" ? (value === "" ? "" : Number(value)) : value,
     });
   };
 

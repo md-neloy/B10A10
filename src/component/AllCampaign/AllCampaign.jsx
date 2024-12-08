@@ -26,10 +26,13 @@ const AllCampaign = () => {
     }
   };
   const handleSort = () => {
-    const sortedData = [...campaigns].sort(
-      (a, b) => a.minDonation - b.minDonation
-    );
-    setCampaigns(sortedData);
+    fetch(`https://b10-a10-server-tau.vercel.app/sort`)
+      .then((res) => res.json())
+      .then((data) => setCampaigns(data));
+    // const sortedData = [...campaigns].sort(
+    //   (a, b) => a.minDonation - b.minDonation
+    // );
+    // setCampaigns(sortedData);
   };
   return (
     <div>
@@ -63,7 +66,7 @@ const AllCampaign = () => {
                     <td className="py-3 px-4">{index + 1}</td>
                     <td className="py-3 px-4">{campaign?.title}</td>
                     <td className="py-3 px-4">{campaign?.userName}</td>
-                    <td className="py-3 px-4">{campaign?.minDonation}</td>
+                    <td className="py-3 px-4">${campaign?.minDonation}</td>
                     <td className="py-3 px-4">{campaign?.deadline}</td>
                     <td className="py-3 px-4 text-center">
                       <button
