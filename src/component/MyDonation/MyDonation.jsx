@@ -24,24 +24,19 @@ const MyDonation = () => {
           <div className="w-fit mx-auto">
             <span className="loading loading-bars loading-md"></span>
           </div>
+          <p className="text-3xl font-semibold text-center my-10">
+            You Didn&apos;t donate any campaing yet!
+          </p>
         </>
       ) : (
         <>
-          {donationCampaign.length > 0 ? (
-            <>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {donationCampaign.map((campaign, idx) => (
-                  <MyDonationDetails key={idx} campaigns={campaign} />
-                ))}
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="text-3xl font-semibold text-center my-10">
-                You Didn&apos;t donate any campaing yet!
-              </p>
-            </>
-          )}
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {donationCampaign.map((campaign, idx) => (
+                <MyDonationDetails key={idx} campaigns={campaign} />
+              ))}
+            </div>
+          </>
         </>
       )}
     </div>
