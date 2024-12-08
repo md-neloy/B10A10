@@ -14,13 +14,13 @@ const Banner = () => {
   return (
     <section className="relative">
       {/* Overlay text */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-30 text-center w-[90%] max-w-xl">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-30 text-center w-[80%] ">
         <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-6xl text-white font-extrabold">
-          Join the journey for
+          Together, We Bring Dreams to Life
           <br />
           <span className="text-yellow-300">
             <Typewriter
-              words={["idea to market"]}
+              words={["Empower Ideas, Fund Dreams, Transform Lives"]}
               loop={"infinitely"}
             ></Typewriter>
           </span>
