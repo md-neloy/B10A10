@@ -127,7 +127,7 @@ const Navbar = () => {
   return (
     <div className="">
       <div
-        className={`navbar flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] flex-wrap `}
+        className={`navbar flex flex-col justify-start items-start md:items-center sm:flex-row md:justify-normal z-40 px-4 lg:px-[100px] flex-wrap md:flex-nowrap `}
         style={{
           position: currentLocation.pathname === "/" ? "absolute" : "static",
           background:
@@ -182,7 +182,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
         </div>
-        <div className="navbar-start sm:navbar-end md:navbar-start gap-2 lg:gap-4">
+        <div className="navbar-start sm:navbar-end md:navbar-start lg:navbar-end gap-2 lg:gap-4">
           {user ? (
             <div className="relative group">
               {/* User Profile Photo */}
