@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Footer = () => {
   const [emailText, setEmailText] = useState();
@@ -27,6 +28,7 @@ const Footer = () => {
       .then(
         () => {
           console.log("SUCCESS!");
+          toast.success("Your Subscription Is Complete");
         },
         (error) => {
           console.log("FAILED...", error);
