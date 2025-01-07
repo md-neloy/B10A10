@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
-import { Context } from "../../ContexApi/ContextProvider";
+// import { Context } from "../../ContexApi/ContextProvider";
+import Campign from "../RunningCampaign/campaign/Campign";
 
 const AllCampaign = () => {
-  const { user } = useContext(Context);
+  // const { user } = useContext(Context);
   const [campaigns, setCampaigns] = useState([]);
   console.log(campaigns);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       const result = await fetch(
@@ -18,13 +19,13 @@ const AllCampaign = () => {
     }
     getData();
   }, []);
-  const handleSeeMore = (id) => {
-    if (user && user.email) {
-      navigate(`/detailsPage/${id}`);
-    } else {
-      document.getElementById("login_modal").showModal();
-    }
-  };
+  // const handleSeeMore = (id) => {
+  //   if (user && user.email) {
+  //     navigate(`/detailsPage/${id}`);
+  //   } else {
+  //     document.getElementById("login_modal").showModal();
+  //   }
+  // };
   const handleSort = () => {
     fetch(`https://b10-a10-server-tau.vercel.app/sort`)
       .then((res) => res.json())
@@ -40,7 +41,7 @@ const AllCampaign = () => {
         <h1 className="text-3xl font-bold mb-6 text-center">All Campaigns</h1>
         <div className="flex justify-end ">
           <button className="btn btn-primary my-2" onClick={handleSort}>
-            sort
+            sort by Minimum Donation
           </button>
         </div>
         <div className="overflow-x-auto">
@@ -49,37 +50,11 @@ const AllCampaign = () => {
               <span className="loading loading-bars loading-md"></span>
             </div>
           ) : (
-            <table className="table w-full border border-gray-300">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="py-3 px-4 text-left">#</th>
-                  <th className="py-3 px-4 text-left">Title</th>
-                  <th className="py-3 px-4 text-left">Organizer</th>
-                  <th className="py-3 px-4 text-left">Minimum Donation</th>
-                  <th className="py-3 px-4 text-left">Dead Line</th>
-                  <th className="py-3 px-4 text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {campaigns?.map((campaign, index) => (
-                  <tr key={campaign._id} className="hover:bg-gray-50">
-                    <td className="py-3 px-4">{index + 1}</td>
-                    <td className="py-3 px-4">{campaign?.title}</td>
-                    <td className="py-3 px-4">{campaign?.userName}</td>
-                    <td className="py-3 px-4">${campaign?.minDonation}</td>
-                    <td className="py-3 px-4">{campaign?.deadline}</td>
-                    <td className="py-3 px-4 text-center">
-                      <button
-                        className="btn btn-sm btn-secondary"
-                        onClick={() => handleSeeMore(campaign._id)}
-                      >
-                        See More
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {campaigns.map((campaign) => {
+                return <Campign key={campaign._id} campaigns={campaign} />;
+              })}
+            </div>
           )}
           <div className="overflow-x-auto">
             {campaigns.length === 0 && (
