@@ -11,6 +11,7 @@ import DetailsPage from "../component/DetailsPage/DetailsPage";
 import MyCampaign from "../component/MyCampaign/MyCampaign";
 import UpdateCampaign from "../component/UpdateCampaign/UpdateCampaign";
 import MyDonation from "../component/MyDonation/MyDonation";
+import Contact from "../component/Contact/Contact";
 
 export const route = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const route = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/login",

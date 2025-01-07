@@ -98,6 +98,22 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "!text-black !bg-[#00FFFF] font-bold hover:bg-[#00FFFF] "
+              : ` font-bold  hover:bg-[#00FFFF] hover:text-black ${
+                  currentLocation.pathname === "/"
+                    ? "bg-transparent text-black lg:text-white"
+                    : "bg-cyan-500 text-black"
+                }`
+          }
+          to="/contact"
+        >
+          Contact
+        </NavLink>
+      </li>
     </>
   );
 

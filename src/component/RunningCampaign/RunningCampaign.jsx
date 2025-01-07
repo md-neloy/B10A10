@@ -30,7 +30,7 @@ const RunningCampaign = () => {
   }, [formatedDate, loadCampings]);
 
   return (
-    <div className="mx-4 lg:mx-[100px] py-10">
+    <div id="runnigCampaign" className="mx-4 lg:mx-[100px] py-10">
       <h1 className="text-4xl text-center font-bold mb-4 text-yellow-500 ">
         Running Campaign
       </h1>
