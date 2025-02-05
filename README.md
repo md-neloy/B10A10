@@ -2,6 +2,8 @@
 
 A crowdfunding platform where individuals can raise money for various projects, ideas, or causes by inviting others to contribute financially.
 
+![DreameCrowd Screenshot](https://i.ibb.co.com/Q7JYKJVz/Screenshot-84.png)
+
 ## 🌐 Live Site URL
 
 [Visit Dream Crowd](https://dream-crowd-1e8a7.web.app/)
